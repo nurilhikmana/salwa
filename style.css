@@ -1,0 +1,509 @@
+:root {
+  --bg: #f8f0fb; /* Soft Lavender Pink */
+  --card-bg: rgba(255, 255, 255, 0.75); /* Glass base */
+  --text: #3a2b30;
+  --accent: #ff6fa3; /* Main Pink */
+  --accent-light: #ffe6f0;
+  --muted: #8b6b7b;
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --shadow: 0 10px 30px rgba(111, 66, 99, 0.15);
+  --radius: 20px;
+  --heart: #ff7fb2;
+  --heart-dark: #e85f97;
+}
+body.dark-mode {
+  --bg: #1e1e2d;
+  --card-bg: rgba(39, 40, 60, 0.7);
+  --text: #e0e0e0;
+  --muted: #a0a0b0;
+  --accent: #ff88b6;
+  --accent-light: #382d38;
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  --heart: #ff99c8;
+  --heart-dark: #c25785;
+}
+
+* {
+  box-sizing: border-box;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out;
+}
+body {
+  margin: 0;
+  font-family: "Poppins", system-ui, Segoe UI, Roboto;
+  color: var(--text);
+  padding: 24px;
+  min-height: 100vh;
+  background: var(--bg);
+  background-image: linear-gradient(135deg, var(--bg) 0%, #fbe4e7 100%);
+  -webkit-font-smoothing: antialiased;
+}
+body.dark-mode {
+  background-image: none;
+}
+
+.wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2.2fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+/* Base Card Styling */
+.card,
+.side {
+  background: var(--card-bg);
+  padding: 30px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+}
+.side {
+  position: sticky;
+  top: 24px;
+}
+
+/* Header and Greeting */
+header {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.avatar img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-light);
+}
+h1 {
+  font-family: "Dancing Script", cursive;
+  margin: 0;
+  color: var(--heart-dark);
+  font-size: 38px;
+  line-height: 1.2;
+}
+.message {
+  margin-top: 18px;
+  font-family: "Indie Flower", cursive;
+  background: var(--accent-light);
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 1.1em;
+  line-height: 1.6;
+}
+
+/* Font & Icon Titles Improvement (NEW) */
+h3 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  color: var(--heart-dark);
+  border-bottom: 2px solid var(--accent-light);
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+  font-size: 1.5em;
+}
+
+h3 i {
+  margin-right: 8px;
+  color: var(--accent);
+}
+
+/* Slideshow */
+.slideshow {
+  height: 400px;
+  margin-top: 25px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 14px;
+  background: var(--accent-light);
+}
+.slides {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.slide {
+  --idx: attr(data-idx number);
+  position: absolute;
+  width: 85%;
+  height: 85%;
+  background: #ffffff;
+  padding: 12px 12px 55px 12px;
+  border-radius: 4px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transform: rotate(calc((var(--idx) - 1.5) * 3deg)) scale(1);
+  transition: transform 0.6s, opacity 0.6s, box-shadow 0.6s;
+  opacity: 0;
+  display: block;
+  align-items: initial;
+  justify-content: initial;
+}
+.slide.active {
+  opacity: 1;
+  transform: rotate(0deg) scale(1.05);
+  z-index: 10;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 2px;
+}
+.slide::after {
+  content: attr(data-caption);
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: "Indie Flower", cursive;
+  color: var(--text);
+  font-size: 1.1em;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Buttons */
+.btn {
+  padding: 12px 20px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(145deg, var(--accent), var(--heart-dark));
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.95em;
+  box-shadow: 0 4px 15px rgba(255, 111, 163, 0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 111, 163, 0.55);
+}
+.btn.ghost {
+  background: transparent;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  box-shadow: none;
+}
+.btn.ghost:hover {
+  transform: translateY(-1px);
+  background: var(--accent-light);
+}
+
+/* Dark Mode Toggle Position */
+#darkModeToggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  z-index: 10000;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  color: var(--text);
+  box-shadow: var(--shadow);
+}
+
+/* Modals and Overlays */
+.video-modal,
+.game-overlay,
+.note-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  padding: 20px;
+}
+.video-box,
+.game-box {
+  background: var(--card-bg);
+  padding: 25px;
+  border-radius: 15px;
+  max-width: 600px;
+  width: 90%;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+.note-box {
+  background: var(--card-bg);
+  color: var(--text);
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  font-family: "Indie Flower", cursive;
+  max-height: 90vh;
+  overflow-y: auto;
+  border: 3px solid var(--accent);
+}
+.note-box h2 {
+  font-family: "Dancing Script", cursive;
+  color: var(--heart-dark);
+  text-align: center;
+  font-size: 2.2em;
+  margin-top: 0;
+}
+.note-box pre {
+  white-space: pre-wrap;
+  font-family: "Indie Flower", cursive;
+  line-height: 1.8;
+  font-size: 1.1em;
+  margin-bottom: 20px;
+  color: inherit;
+}
+
+/* Playlist and Timeline (MODIFIED) */
+.playlist {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+  transition: opacity 0.2s ease-in-out;
+}
+.playlist .song {
+  display: flex;
+  align-items: center;
+  gap: 16px; /* Jarak yang lebih lebar */
+  padding: 15px; /* Spasi yang lebih luas */
+  border-radius: 12px;
+  background: var(--accent-light);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.playlist .song:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Penargetan class baru .song-title dan perbaikan hover */
+.playlist .song:hover .song-title,
+.playlist .song:hover small,
+.playlist .song:hover .play-quick {
+  color: #fff; /* Pastikan semua teks dan icon menjadi putih saat hover */
+}
+
+.playlist .song img.album-art {
+  width: 50px; /* Album art sedikit lebih besar */
+  height: 50px;
+  border-radius: 8px; /* Sudut lebih tegas */
+  object-fit: cover;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Bayangan halus */
+}
+
+.playlist .song .song-title {
+  font-weight: 700; /* Font title lagu lebih tebal */
+  font-size: 1em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.playlist .song .play-quick {
+  padding: 8px 12px;
+  font-size: 0.85em;
+  flex-shrink: 0;
+}
+.playlist .song:hover .play-quick {
+  border-color: #fff;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 15px;
+}
+.timeline .mem {
+  background: var(--accent-light);
+  padding: 15px;
+  border-radius: 12px;
+  border-left: 5px solid var(--accent);
+  font-size: 15px;
+}
+.daily-msg,
+.fake-chat {
+  padding: 15px;
+  border-radius: 12px;
+  background: var(--accent-light);
+  font-family: "Indie Flower", cursive;
+  margin-top: 12px;
+  font-size: 1em;
+}
+.fake-chat {
+  border: 1px dashed var(--accent);
+}
+
+/* Mood Buttons */
+.mood-btn {
+  padding: 9px 15px;
+  border-radius: 999px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+.mood-btn.active {
+  box-shadow: 0 0 0 3px rgba(255, 111, 163, 0.4); /* Highlight active mood */
+}
+#softMood {
+  background: #fbe8f3;
+  border-color: var(--accent);
+  color: var(--accent);
+}
+#nightMood {
+  background: #eef6ff;
+  border-color: #9ecfff;
+  color: #6195e0;
+}
+#happyMood {
+  background: #fff7e6;
+  border-color: #ffc400;
+  color: #ffc400;
+}
+
+/* Magic Trail Buttons Styling */
+.float-panel {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+#floatModeSelector .btn {
+  padding: 8px 12px;
+  font-size: 0.85em;
+  font-weight: 500;
+}
+#floatModeSelector .btn:not(.active) {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--muted);
+  box-shadow: none;
+}
+#floatModeSelector .btn.active {
+  border: 1px solid var(--accent);
+}
+
+/* Game Styles */
+#spawnArea {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  border: 2px dashed var(--accent);
+  border-radius: 10px;
+  background: var(--accent-light);
+  overflow: hidden;
+}
+.heart-item {
+  position: absolute;
+  cursor: pointer;
+  animation: pulse 0.5s infinite alternate;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  user-select: none;
+}
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
+/* Toast Notification */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--heart-dark);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 999px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  z-index: 10000;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  display: none;
+}
+
+/* Secret Input Styling */
+#secretCodeInput {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--accent);
+  background: var(--card-bg);
+  color: var(--text);
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 992px) {
+  .wrap {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .side {
+    position: static;
+  }
+  .slideshow {
+    height: 350px;
+  }
+}
+@media (max-width: 576px) {
+  body {
+    padding: 15px;
+  }
+  .card,
+  .side {
+    padding: 20px;
+  }
+  .slideshow {
+    height: 280px;
+  }
+  .slide {
+    padding: 8px 8px 45px 8px;
+  }
+  h1 {
+    font-size: 32px;
+  }
+  .btn {
+    font-size: 0.9em;
+    padding: 10px 16px;
+  }
+  .float-panel {
+    justify-content: center; /* Rata tengah di mobile */
+  }
+  .slide::after {
+    font-size: 1em;
+    white-space: normal; /* Biarkan teks caption wrap */
+    text-align: center;
+    width: 90%; /* Batasi lebar caption */
+  }
+}

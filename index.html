@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>from me to u, the pretiest girl 💌</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Indie+Flower&family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <button id="darkModeToggle">
+      <i class="fa-solid fa-moon"></i>
+    </button>
+
+    <div class="wrap">
+      <section class="card">
+        <header>
+          <div class="avatar">
+            <img
+              src="cintaku.jpg"
+              alt="photo"
+              onerror="this.src='https://via.placeholder.com/80/ff7fb2/ffffff?text=U'"
+            />
+          </div>
+          <div>
+            <h1 id="mainGreeting">Good Morning, My Sweetest! ☀️</h1>
+            <p style="margin: 0; color: var(--muted)">
+              A tiny place I built just for u
+              <i class="fa-solid fa-heart"></i>
+            </p>
+          </div>
+        </header>
+
+        <p class="message">
+          hi salwa, this little page is just a small space i made for u, play
+          music yg kamu suka dulu baru explore website ini yaa
+          <span style="font-weight: 700; color: var(--heart-dark)"
+            >kalo udah play music, open note pls!!</span
+          >
+        </p>
+
+        <div style="margin-top: 20px">
+          <div
+            style="
+              display: flex;
+              gap: 10px;
+              align-items: center;
+              justify-content: space-between;
+              font-size: 1.1em;
+            "
+          >
+            <strong
+              ><i class="fa-solid fa-note-sticky"></i> Today's little
+              note</strong
+            >
+            <button class="btn ghost" id="nextDailyBtn">
+              Next <i class="fa-solid fa-angles-right"></i>
+            </button>
+          </div>
+          <div class="daily-msg" id="dailyMsg" style="margin-top: 10px">
+            Loading...
+          </div>
+        </div>
+
+        <div class="slideshow" aria-hidden="false">
+          <div class="slides" id="slides">
+            <div class="slide active" data-idx="0" data-caption="fav foto of u">
+              <img
+                src="gorg.jpg"
+                alt="m1"
+                onerror="this.src='https://via.placeholder.com/800x500/e85f97/ffffff?text=Photo+1'"
+              />
+            </div>
+            <div
+              class="slide"
+              data-idx="1"
+              data-caption="u, looking soOOo cute"
+            >
+              <img
+                src="cute.jpg"
+                alt="m2"
+                onerror="this.src='https://via.placeholder.com/800x500/e85f97/ffffff?text=Photo+2'"
+              />
+            </div>
+            <div class="slide" data-idx="2" data-caption="this so majestic ✨">
+              <img
+                src="majestic.jpg"
+                alt="m3"
+                onerror="this.src='https://via.placeholder.com/800x500/e85f97/ffffff?text=Photo+3'"
+              />
+            </div>
+            <div class="slide" data-idx="3" data-caption="Another Cute Foto">
+              <img
+                src="angel.jpg"
+                alt="m4"
+                onerror="this.src='https://via.placeholder.com/800x500/e85f97/ffffff?text=Photo+4'"
+              />
+            </div>
+            <div class="slide" data-idx="4" data-caption="beautfulll">
+              <img
+                src="love.jpg"
+                alt="m5"
+                onerror="this.src='https://via.placeholder.com/800x500/e85f97/ffffff?text=Photo+5'"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          style="
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 15px;
+          "
+        >
+          <button class="btn ghost" id="prevSlide">
+            <i class="fa-solid fa-arrow-left"></i> Prev
+          </button>
+          <button class="btn" id="shuffleBtn">
+            <i class="fa-solid fa-shuffle"></i> Shuffle Photo!
+          </button>
+          <button class="btn ghost" id="nextSlide">
+            Next <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+
+        <div
+          style="
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+            align-items: center;
+          "
+        >
+          <button class="btn" id="openNote">
+            Open A Cute Note <i class="fa-solid fa-envelope"></i>
+          </button>
+          <button class="btn ghost" id="toggleHearts">
+            <i class="fa-solid fa-heart-circle-check"></i> Toggle hearts
+          </button>
+          <button class="btn" id="openGame">
+            Play: Catch Hearts <i class="fa-solid fa-gamepad"></i>
+          </button>
+          <button class="btn ghost" id="openVideo">
+            Surprise Video <i class="fa-solid fa-film"></i>
+          </button>
+        </div>
+
+        <div style="margin-top: 25px">
+          <h3><i class="fa-solid fa-comment-dots"></i> Chat Simulation</h3>
+          <div class="fake-chat" id="fakeChat">
+            <div><strong>You:</strong> are you okay today?</div>
+            <div
+              id="simReply"
+              style="opacity: 0.9; margin-top: 8px; color: var(--muted)"
+            >
+              <em>She is thinking...</em>
+            </div>
+            <div style="margin-top: 12px">
+              <button class="btn" id="triggerReply">
+                See Reply <i class="fa-solid fa-reply"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="side" aria-label="Music and extras">
+        <div>
+          <h3><i class="fa-solid fa-music"></i> Soundtrack</h3>
+          <p style="margin: 0 0 12px; color: var(--muted)">
+            Pick a mood and the playlist follows
+            <i class="fa-solid fa-face-smile"></i>
+          </p>
+          <div style="display: flex; gap: 8px; margin-bottom: 12px">
+            <button class="mood-btn" id="softMood">
+              Soft <i class="fa-solid fa-cloud"></i>
+            </button>
+            <button class="mood-btn" id="nightMood">
+              Night <i class="fa-solid fa-moon"></i>
+            </button>
+            <button class="mood-btn" id="happyMood">
+              Happy <i class="fa-solid fa-face-grin-hearts"></i>
+            </button>
+          </div>
+          <div style="display: flex; gap: 8px; margin-top: 10px">
+            <button
+              class="btn"
+              id="playPauseBtn"
+              style="flex: 1; padding: 10px 15px"
+            >
+              <i class="fa-solid fa-play"></i> Play
+            </button>
+            <button class="btn ghost" id="stopBtn" style="padding: 10px 15px">
+              <i class="fa-solid fa-stop"></i> Stop
+            </button>
+          </div>
+          <div class="playlist" id="playlist"></div>
+
+          <p
+            id="nowPlayingContainer"
+            style="
+              margin-top: 18px;
+              padding-top: 12px;
+              border-top: 1px solid var(--glass-border);
+            "
+          >
+            <small style="color: var(--muted)">Now Playing:</small>
+            <span
+              id="nowPlaying"
+              style="font-weight: 600; color: var(--heart-dark)"
+              >(Berhenti)</span
+            >
+          </p>
+
+          <h3 style="margin-top: 25px">
+            <i class="fa-solid fa-wand-sparkles"></i> Magic Trail Mode
+          </h3>
+          <div class="float-panel" id="floatModeSelector">
+            <button class="btn accent active" data-mode="hearts">
+              <i class="fa-solid fa-heart"></i> Hearts
+            </button>
+            <button class="btn ghost" data-mode="sakura">
+              <i class="fa-solid fa-fan"></i> Sakura
+            </button>
+            <button class="btn ghost" data-mode="sparkle">
+              <i class="fa-solid fa-star"></i> Sparkle
+            </button>
+            <button class="btn ghost" data-mode="bubble">
+              <i class="fa-solid fa-cloud"></i> Bubble
+            </button>
+          </div>
+
+          <h3 style="margin-top: 25px">
+            <i class="fa-solid fa-gift"></i> Random Compliment
+          </h3>
+          <button
+            class="btn"
+            id="tilayBtn"
+            style="
+              width: 100%;
+              background: #9c27b0;
+              margin-bottom: 10px;
+              box-shadow: 0 4px 15px rgba(156, 39, 176, 0.4);
+            "
+          >
+            Tell Me Something Sweet! <i class="fa-solid fa-face-grin-wink"></i>
+          </button>
+          <div
+            id="tilayDisplay"
+            style="
+              background: var(--accent-light);
+              padding: 12px;
+              border-radius: 10px;
+              font-family: 'Indie Flower', cursive;
+              min-height: 50px;
+              border: 1px dashed var(--heart-dark);
+              font-size: 1.1em;
+            "
+          >
+            Klik tombol di atas!
+          </div>
+
+          <h3 style="margin-top: 25px">
+            <i class="fa-solid fa-key"></i> Secret Unlock
+          </h3>
+          <div style="display: flex; gap: 8px">
+            <input
+              type="password"
+              id="secretCodeInput"
+              placeholder="Type our secret word 🤫"
+            />
+            <button class="btn" id="checkSecretCode">
+              <i class="fa-solid fa-lock-open"></i>
+            </button>
+          </div>
+
+          <h3 style="margin-top: 25px">
+            <i class="fa-solid fa-calendar-days"></i> Our Timeline
+          </h3>
+          <div class="timeline" id="timeline"></div>
+
+          <h3 style="margin-top: 25px">
+            <i class="fa-solid fa-trophy"></i> Achievements
+          </h3>
+          <div
+            id="achievementsList"
+            style="display: flex; gap: 8px; flex-wrap: wrap"
+          ></div>
+        </div>
+      </aside>
+    </div>
+
+    <audio id="player" controls></audio>
+    <audio id="bgm" loop></audio>
+
+    <div class="note-modal" id="noteModal">
+      <div class="note-box">
+        <h2>a letter, only just for u</h2>
+        <pre id="noteContent">
+(Isi surat akan dimasukkan oleh JavaScript)
+            </pre
+        >
+        <div style="display: flex; justify-content: flex-end; margin-top: 8px">
+          <button class="btn" id="closeNote">
+            Close <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="game-overlay" id="gameOverlay">
+      <div class="game-box">
+        <h2 style="margin: 4px 0 8px">
+          <i class="fa-solid fa-gamepad"></i> Catch the Hearts!
+        </h2>
+        <p style="margin: 0 0 10px; color: var(--muted)">
+          Click hearts before they disappear. Get 10 to win.
+        </p>
+        <div class="spawn-area" id="spawnArea"></div>
+        <div
+          style="
+            display: flex;
+            gap: 8px;
+            justify-content: flex-end;
+            margin-top: 15px;
+          "
+        >
+          <button class="btn ghost" id="closeGame">
+            Close <i class="fa-solid fa-xmark"></i>
+          </button>
+          <button class="btn" id="startGame">
+            Start <i class="fa-solid fa-play"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-modal" id="videoModal">
+      <div class="video-box">
+        <video
+          id="surpriseVideo"
+          controls
+          style="width: 100%; height: auto; border-radius: 8px"
+        >
+          <source src="for u.mp4" type="video/mp4" />
+          Your browser does not support video.
+        </video>
+        <div style="display: flex; justify-content: flex-end; margin-top: 8px">
+          <button class="btn ghost" id="closeVideo">
+            Close <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast" id="toast">Achievement unlocked!</div>
+
+    <div style="height: 40px"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
